@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<!--<meta http-equiv="refresh" content="5">-->
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+
+image = new Image();
+counter = 0;
+
+image.onload = function(){
+
+    document.images.cam.src = this.src;
+
+    setTimeout("load()",2000);
+
+}
+
+function load()
+{
+    var d=new Date();
+    var n=d.toUTCString(); 
+
+    image.src = "cam0.png?time=" + n; 
+
+    //timestamp
+    $.ajax({
+    url: "timestamp",
+    success: function( data ) {
+    $( "#timestamp" ).html( data );
+    }
+    });
+} 
+    
+setTimeout("load()",2000);
+
+
+
+</script>
+<head>
+
+
+<body><h1>It works!</h1>
+<br>
+<img src="cam0.png" name="cam">
+<br>
+<div id="timestamp"></div>
+
+</body></html>

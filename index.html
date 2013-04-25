@@ -5,34 +5,48 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
 
-image = new Image();
-counter = 0;
+images = [new Image(),new Image(),new Image()];
+images[0].webcam_number = 0;
+images[1].webcam_number = 1;
+images[2].webcam_number = 2;
 
-image.onload = function(){
-
-    document.images.cam.src = this.src;
-
-    setTimeout("load()",2000);
-
+images[0].onload = images[1].onload = images[2].onload = 
+function()
+{
+    //$("#cam"+this.webcam_number).src = this.src;
+    document.images[this.webcam_number].src = this.src;
+    setTimeout("load("+this.webcam_number+")",2000);
 }
 
-function load()
+
+
+function load(num)
 {
     var d=new Date();
     var n=d.toUTCString(); 
 
-    image.src = "cam.png?time=" + n; 
+    images[num].src = "cam" + num + "-thumb.png?cachekiller=" + n; 
+}
 
-    //timestamp
+
+function loadtimestamp()
+{
     $.ajax({
-    url: "timestamp",
-    success: function( data ) {
-    $( "#timestamp" ).html( data );
-    }
+	url: "timestamp",
+	success: function( data )
+	{
+	    $( "#timestamp" ).html( data );
+	    setTimeout("loadtimestamp()",2000);
+	}
     });
-} 
-    
-setTimeout("load()",2000);
+}
+
+
+setTimeout("load(0)",2000);
+setTimeout("load(1)",2000);
+setTimeout("load(2)",2000);
+
+setTimeout("loadtimestamp()",2000);
 
 
 
@@ -40,13 +54,16 @@ setTimeout("load()",2000);
 <head>
 
 
-<body><h1>It works!</h1>
-now if some javascript wizzard just fixed the lag..
+<body>
+<!--<h1>webcam is <a href="http://en.wikipedia.org/wiki/Fission_%28biology%29">budding</a>, please stand back.</h1>-->
+
 <br>
-<img src="cam.png" name="cam">
+
+<a href="index1.html"><img src="cam1-thumb.png" name="cam1" id=1></a>
+<a href="index0.html"><img src="cam0-thumb.png" name="cam0" id=0></a>
+<a href="index2.html"><img src="cam2-thumb.png" name="cam2"></a>
+
 <br>
-<div id="timestamp"></div>
-<br>
-<a href="webcam-git/.git">source</a>
+<div id="timestamp"></div> | <a href="webcam-git/.git">git clone me</a> | made by kook
 
 </body></html>
