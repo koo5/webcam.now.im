@@ -10,11 +10,19 @@ images[0].webcam_number = 0;
 images[1].webcam_number = 1;
 images[2].webcam_number = 2;
 
+docimages = [];
+function reshuffle()
+{
+    docimages = [document.images[1], document.images[0], document.images[2]];
+}
+
 images[0].onload = images[1].onload = images[2].onload = 
 function()
 {
     //$("#cam"+this.webcam_number).src = this.src;
-    document.images[this.webcam_number].src = this.src;
+    //document.images[this.webcam_number].src = this.src;
+    docimages[this.webcam_number].src = this.src;
+
     setTimeout("load("+this.webcam_number+")",2000);
 }
 
@@ -50,17 +58,18 @@ setTimeout("loadtimestamp()",2000);
 
 
 
+
 </script>
 <head>
 
 
-<body>
+<body onload="reshuffle()">
 <!--<h1>webcam is <a href="http://en.wikipedia.org/wiki/Fission_%28biology%29">budding</a>, please stand back.</h1>-->
 
 <br>
 
-<a href="index1.html"><img src="cam1-thumb.png" name="cam1" id=1></a>
-<a href="index0.html"><img src="cam0-thumb.png" name="cam0" id=0></a>
+<a href="index1.html"><img src="cam1-thumb.png" name="cam1"></a>
+<a href="index0.html"><img src="cam0-thumb.png" name="cam0"></a>
 <a href="index2.html"><img src="cam2-thumb.png" name="cam2"></a>
 
 <br>
