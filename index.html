@@ -12,7 +12,7 @@ images[2].webcam_number = 2;
 
 function reshuffle()
 {
-    window.docimages = [document.images[1], document.images[0], document.images[2]];
+    window.cams = [document.images[1], document.images[0], document.images[2]];
 }
 
 images[0].onload = images[1].onload = images[2].onload = 
@@ -20,7 +20,8 @@ function()
 {
     //$("#cam"+this.webcam_number).src = this.src;
     //document.images[this.webcam_number].src = this.src;
-    window.docimages[this.webcam_number].src = this.src;
+
+    window.cams[this.webcam_number].src = this.src;
 
     setTimeout("load("+this.webcam_number+")",2000);
 }
@@ -31,12 +32,13 @@ function()
     setTimeout("load("+this.webcam_number+")",2000);
 }
 
+/*
 images[0].onabort = images[0].onabort = images[0].onabort = 
 function()
 {
     console.log("wut wut");
 }
-
+*/
 
 
 function load(num)
@@ -65,6 +67,7 @@ function loadtimestamp()
 function init()
 {
     reshuffle();
+    
     setTimeout("load(0)",2000);
     setTimeout("load(1)",2000);
     setTimeout("load(2)",2000);
@@ -83,6 +86,7 @@ function init()
 
 <body onload="init()">
 <!--<h1>webcam is <a href="http://en.wikipedia.org/wiki/Fission_%28biology%29">budding</a>, please stand back.</h1>-->
+<h1>webcams are being <a href="http://en.wikipedia.org/wiki/Unethical_human_experimentation_in_the_United_States">experimented on</a>, please stand back.</h1>
 
 <br>
 
@@ -91,6 +95,6 @@ function init()
 <a href="index2.html"><img src="cam2-thumb.png" name="cam2"></a>
 
 <br>
-<div id="timestamp"></div> | <a href="webcam-git/.git">git clone me</a> | made by kook | reverse-nukes on request
+<span id="timestamp"></span> | <a href="webcam-git/.git">git clone me</a> | made by kook | to be erased from the cams, contact kook in-game or in the forums, or sirdancealot on irc. </div>
 
 </body></html>

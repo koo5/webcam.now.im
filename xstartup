@@ -1,5 +1,5 @@
 #!/bin/sh
-
+#linked from ~/.vnc
 xrdb $HOME/.Xresources
 #xsetroot -solid black
 
