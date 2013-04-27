@@ -36,9 +36,7 @@ easy fix would be
 montage -geometry +0+0  -quality 95  cam0.png cam0.jpeg
 is almost unnoticable distortion and saves 125kb from the 400kb original
 
-optipng only gets it down to 340
-
-->try other compressors for jpg and png
+optipng or other compressors for jpg and png
 
 the vps cpu is pretty limited - it has to be quick too:)
 
@@ -48,13 +46,15 @@ jpeg - > could do mjpeg
 
 
 
+
+
 fstab:
 currently i have tmpfs	/tmp	tmpfs and i have blank_init.sh
 ->figure out aufs and replace with an aufs and a tmpfs overlay in /tmp/webcam
 #(tmpfs avoids trashing hdd with every screenshot)
 
 too lazy:
-phpize the three indexes, make it into a service
+phpize the three indexes, replace screen with a service
 
 train one webcam and take it to candor. if its cool, talk to gms to fix it there
 gy cam: talk to gms if we can be invulnerable and automate casting #inwilt there?
